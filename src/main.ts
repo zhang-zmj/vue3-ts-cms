@@ -2,44 +2,15 @@ import { createApp } from "vue"
 import App from "./App.vue"
 import router from "./router"
 import store from "./store"
-
 import { globalRegister } from "./global"
-
-import MJRequest from "./network"
+import "normalize.css"
+import "./assets/css/index.css"
+import { setupStore } from "@/store/index"
 
 const app = createApp(App)
 app.use(globalRegister)
 app.use(router)
 app.use(store)
+// 防止用户刷新
+setupStore()
 app.mount("#app")
-
-// MJRequest.request({
-//   url: "/home/multidata",
-//   method: "GET",
-//   interceptors: {
-//     requestInterceptor: (config) => {
-//       console.log("单独请求的config")
-//       return config
-//     },
-//     responseInterceptor: (res) => {
-//       console.log("单独响应的的response")
-//       return res
-//     }
-//   },
-//   showLoading: false
-// }).then((res) => {
-//   console.log(res)
-// })
-
-interface DataType {
-  data: any
-  returnCode: number
-  msg: string
-}
-
-MJRequest.request<DataType>({
-  url: "/home/multidata",
-  method: "GET"
-}).then((res) => {
-  console.log("-------------", res.data)
-})

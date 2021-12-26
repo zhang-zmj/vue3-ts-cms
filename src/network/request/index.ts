@@ -28,8 +28,6 @@ class ZMJRequest {
     //添加所有的实例都有的拦截器：代码执行顺序和执行顺序有关
     this.instance.interceptors.request.use(
       (config) => {
-        console.log("所有的实例都有的拦截器：请求拦截成功！！！")
-
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -41,30 +39,24 @@ class ZMJRequest {
         return config
       },
       (err) => {
-        console.log("所有的实例都有的拦截器：请求拦截失败！！！")
         return err
       }
     )
 
     this.instance.interceptors.response.use(
       (res) => {
-        console.log("所有的实例都有的拦截器：响应拦截成功！！！")
-
         setTimeout(() => {
           this.loading?.close()
         }, 1000)
 
-        if (res.data.returnCode === "-1001") {
-          console.log("请求失败，错误信息")
+        const data = res.data
+        if (data.returnCode === "-1001") {
+          console.log("请求失败~, 错误信息")
         } else {
-          return res
+          return data
         }
       },
       (err) => {
-        if (err.respose.status === 404) {
-          console.log("404的错误")
-        }
-        console.log("所有的实例都有的拦截器：响应拦截失败！！！")
         return err
       }
     )
