@@ -10,7 +10,15 @@ import {
   ElRadio,
   ElTabPane,
   ElTabs,
-  ElIcon
+  ElIcon,
+  ElAside,
+  ElHeader,
+  ElMain,
+  ElContainer,
+  ElMenu,
+  ElSubMenu,
+  ElMenuItem,
+  ElMenuItemGroup
 } from "element-plus/lib/components"
 
 const components = [
@@ -23,12 +31,20 @@ const components = [
   ElTabPane,
   ElCheckbox,
   ElLink,
-  ElIcon
+  ElIcon,
+  ElAside,
+  ElHeader,
+  ElMain,
+  ElContainer,
+  ElMenu,
+  ElSubMenu,
+  ElMenuItem,
+  ElMenuItemGroup
 ]
 
-import { Iphone, Avatar } from "@element-plus/icons-vue"
+import { Iphone, Avatar, Expand, Fold } from "@element-plus/icons-vue"
 
-const Icons = [Iphone, Avatar]
+const Icons = [Iphone, Avatar, Expand, Fold]
 
 export default function (app: App): void {
   for (const component of components) {
