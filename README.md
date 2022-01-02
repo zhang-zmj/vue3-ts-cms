@@ -12,15 +12,26 @@
 
 ```
 ### 项目的流程：
+
 1、项目规范的搭建
+
   master 
+  
 2、项目网络的搭建
+
   network 
+  
 3、element-plus相关操作
+
   main
+  
 4、登录的相关业务
+
   login
+  
 5、侧边栏相关业务 
+
   aside
+  
   
   
