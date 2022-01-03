@@ -18,7 +18,17 @@ import {
   ElMenu,
   ElSubMenu,
   ElMenuItem,
-  ElMenuItemGroup
+  ElMenuItemGroup,
+  ElDropdown,
+  ElDropdownItem,
+  ElDescriptionsItem,
+  ElAvatar,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElOption,
+  ElDatePicker,
+  ElDropdownMenu
 } from "element-plus/lib/components"
 
 const components = [
@@ -39,12 +49,29 @@ const components = [
   ElMenu,
   ElSubMenu,
   ElMenuItem,
-  ElMenuItemGroup
+  ElMenuItemGroup,
+  ElDropdown,
+  ElDropdownItem,
+  ElDescriptionsItem,
+  ElAvatar,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElOption,
+  ElDatePicker,
+  ElDropdownMenu
 ]
 
-import { Iphone, Avatar, Expand, Fold } from "@element-plus/icons-vue"
+import {
+  Iphone,
+  Avatar,
+  Expand,
+  Fold,
+  ArrowDown,
+  Close
+} from "@element-plus/icons-vue"
 
-const Icons = [Iphone, Avatar, Expand, Fold]
+const Icons = [Iphone, Avatar, Expand, Fold, ArrowDown, Close]
 
 export default function (app: App): void {
   for (const component of components) {
