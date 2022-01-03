@@ -11,8 +11,9 @@
         </el-header>
 
         <el-main class="page-content">
-          main
-          <router-view></router-view>
+          <div class="page-info">
+            <router-view></router-view>
+          </div>
         </el-main>
       </el-container>
     </el-container>
@@ -93,5 +94,9 @@ export default defineComponent({
   color: #333;
   text-align: center;
   background-color: #f0f2f5;
+}
+
+.page-info {
+  background-color: #fff;
 }
 </style>
