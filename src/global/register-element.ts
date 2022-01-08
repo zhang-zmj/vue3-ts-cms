@@ -28,7 +28,9 @@ import {
   ElSelect,
   ElOption,
   ElDatePicker,
-  ElDropdownMenu
+  ElDropdownMenu,
+  ElBreadcrumb,
+  ElBreadcrumbItem
 } from "element-plus/lib/components"
 
 const components = [
@@ -59,7 +61,9 @@ const components = [
   ElSelect,
   ElOption,
   ElDatePicker,
-  ElDropdownMenu
+  ElDropdownMenu,
+  ElBreadcrumb,
+  ElBreadcrumbItem
 ]
 
 import {
@@ -68,10 +72,12 @@ import {
   Expand,
   Fold,
   ArrowDown,
-  Close
+  Close,
+  Refresh,
+  Search
 } from "@element-plus/icons-vue"
 
-const Icons = [Iphone, Avatar, Expand, Fold, ArrowDown, Close]
+const Icons = [Iphone, Avatar, Expand, Fold, ArrowDown, Close, Refresh, Search]
 
 export default function (app: App): void {
   for (const component of components) {
