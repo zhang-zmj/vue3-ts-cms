@@ -70,8 +70,6 @@ export default defineComponent({
     const route = useRoute()
     const currentPath = route.path
 
-    console.log("获取到的数据", userMenus.value)
-
     // data
     const menu = pathMapToMenu(userMenus.value, currentPath)
     const defaultVaule = ref(menu.id + "")

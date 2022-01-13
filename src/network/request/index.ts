@@ -90,19 +90,19 @@ class ZMJRequest {
     })
   }
 
-  get<T>(config: ZMJRequestConfig<T>): Promise<T> {
+  get<T = any>(config: ZMJRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "GET" })
   }
 
-  post<T>(config: ZMJRequestConfig<T>): Promise<T> {
+  post<T = any>(config: ZMJRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "POST" })
   }
 
-  delete<T>(config: ZMJRequestConfig<T>): Promise<T> {
+  delete<T = any>(config: ZMJRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "DELETE" })
   }
 
-  put<T>(config: ZMJRequestConfig<T>): Promise<T> {
+  put<T = any>(config: ZMJRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "PUT" })
   }
 }

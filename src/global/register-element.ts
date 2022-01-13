@@ -30,7 +30,10 @@ import {
   ElDatePicker,
   ElDropdownMenu,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn,
+  ElPagination
 } from "element-plus/lib/components"
 
 const components = [
@@ -63,7 +66,10 @@ const components = [
   ElDatePicker,
   ElDropdownMenu,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn,
+  ElPagination
 ]
 
 import {
@@ -74,17 +80,44 @@ import {
   ArrowDown,
   Close,
   Refresh,
-  Search
+  Search,
+  Edit,
+  Delete
 } from "@element-plus/icons-vue"
+import { ElConfigProvider } from "element-plus"
 
-const Icons = [Iphone, Avatar, Expand, Fold, ArrowDown, Close, Refresh, Search]
+// const Icons = [
+//   Iphone,
+//   Avatar,
+//   Expand,
+//   Fold,
+//   ArrowDown,
+//   Close,
+//   Refresh,
+//   Search,
+//   Edit,
+//   Delete
+// ]
 
 export default function (app: App): void {
   for (const component of components) {
     app.component(component.name, component)
   }
 
-  for (const icon of Icons) {
-    app.component(icon.name, icon)
-  }
+  // for (const icon of Icons) {
+  //   app.component(icon.name, icon)
+  // }
+}
+
+export {
+  Iphone,
+  Avatar,
+  Expand,
+  Fold,
+  ArrowDown,
+  Close,
+  Refresh,
+  Search,
+  Edit,
+  Delete
 }
