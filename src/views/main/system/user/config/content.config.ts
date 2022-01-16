@@ -34,5 +34,6 @@ export const contentTableConfig = {
     }
   ],
   showIndexColum: true,
-  showSelectColum: true
+  showSelectColum: true,
+  showFooter: true
 }
