@@ -44,11 +44,11 @@
     <div class="footer">
       <slot name="footer">
         <el-pagination
-          v-model:currentPage="currentPage4"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
+          :currentPage="page.currentPage"
+          :page-size="page.pageSize"
+          :page-sizes="[10, 20, 30]"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
+          :total="listCount"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
         >
@@ -75,6 +75,10 @@ export default defineComponent({
       type: Array as any,
       require: true
     },
+    listCount: {
+      type: Number,
+      default: 0
+    },
     showIndexColum: {
       type: Boolean,
       default: false
@@ -82,15 +86,32 @@ export default defineComponent({
     showSelectColum: {
       type: Boolean,
       default: false
+    },
+    page: {
+      type: Object,
+      default: () => ({ currentPage: 0, pageSize: 10 })
     }
   },
-  emits: ["selectionChange"],
+  emits: ["selectionChange", "update:page"],
   setup(props, { emit }) {
     const handleSelectionChange = (value: any) => {
       emit("selectionChange", value)
     }
+
+    const handleCurrentChange = (currentPage: number) => {
+      console.log("改变当前页", currentPage)
+      emit("update:page", { ...props.page, currentPage })
+    }
+
+    const handleSizeChange = (pageSize: number) => {
+      console.log("改变当前数量大小", pageSize)
+      emit("update:page", { ...props.page, pageSize })
+    }
+
     return {
-      handleSelectionChange
+      handleSelectionChange,
+      handleCurrentChange,
+      handleSizeChange
     }
   }
 })

@@ -33,7 +33,8 @@ export default defineComponent({
   components: {
     ZmjForm
   },
-  setup(props) {
+  emits: ["resetBtnClick", "queryBtnClick"],
+  setup(props, { emit }) {
     const formItems = props.searchFormConfig.formItems ?? []
     const formOriginData: any = {}
     for (const item of formItems) {
@@ -46,11 +47,12 @@ export default defineComponent({
       //   formData.value[`${key}`] = formOriginData[key]
       // }
       formData.value = formOriginData
+      emit("resetBtnClick")
     }
 
     // 用户点击搜索
     const handleQuryClick = () => {
-      console.log("获取到的值")
+      emit("queryBtnClick", formData.value)
     }
 
     return {

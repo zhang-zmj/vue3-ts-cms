@@ -1,6 +1,11 @@
 <template>
   <div class="page-content">
-    <mj-table :listData="userList" v-bind="contentTableConfig">
+    <mj-table
+      :listData="userList"
+      :listCount="dataCount"
+      v-bind="contentTableConfig"
+      v-model:page="pageInfo"
+    >
       <!--1、 header中的插槽  -->
       <template #headerHandler>
         <el-button type="primary">新建用户</el-button>
@@ -32,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue"
+import { defineComponent, computed, ref, watch } from "vue"
 import { Edit, Delete, Refresh } from "@/global/register-element"
 import MjTable from "@/base-ui/table"
 import { useStore } from "@/store"
@@ -53,21 +58,41 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore()
-    store.dispatch("system/getPageListAction", {
-      pageName: props.pageName,
-      queryInfo: {
-        offset: 0,
-        size: 10
-      }
-    })
-    const userList = computed(() => store.state.system.userList)
-    const userCount = computed(() => store.state.system.userCount)
+
+    // 双向绑定pageInfo
+    const pageInfo = ref({ currentPage: 0, pageSize: 10 })
+    watch(pageInfo, () => getPageData())
+
+    // 发送网络请求
+    const getPageData = (queryInfo: any = {}) => {
+      store.dispatch("system/getPageListAction", {
+        pageName: props.pageName,
+        queryInfo: {
+          offset: pageInfo.value.currentPage * pageInfo.value.pageSize,
+          size: pageInfo.value.pageSize,
+          ...queryInfo
+        }
+      })
+    }
+    getPageData()
+
+    // 从vuex中获取数据
+    const userList = computed(() =>
+      store.getters[`system/pageListData`](props.pageName)
+    )
+
+    const dataCount = computed(() =>
+      store.getters[`system/pageListCount`](props.pageName)
+    )
 
     return {
       Edit,
       Delete,
       Refresh,
-      userList
+      userList,
+      getPageData,
+      dataCount,
+      pageInfo
     }
   }
 })
