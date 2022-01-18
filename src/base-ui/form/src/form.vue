@@ -8,8 +8,10 @@
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
             <el-form-item
+              v-if="!item.isHidden"
               :label="item.label"
               class="form-item"
+              :rules="item.rules"
               :style="itemStyle"
             >
               <template
@@ -24,7 +26,13 @@
               </template>
 
               <template v-else-if="item.type === 'select'">
-                <el-select :placeholder="item.placeholder" style="width: 100%">
+                <el-select
+                  :placeholder="item.placeholder"
+                  style="width: 100%"
+                  v-bind="item.otherOptions"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
+                >
                   <el-option
                     v-for="option in item.optins"
                     :key="option.value"

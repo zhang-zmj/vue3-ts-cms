@@ -105,6 +105,10 @@ class ZMJRequest {
   put<T = any>(config: ZMJRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "PUT" })
   }
+
+  patch<T = any>(config: ZMJRequestConfig<T>): Promise<T> {
+    return this.request<T>({ ...config, method: "PATCH" })
+  }
 }
 
 export default ZMJRequest

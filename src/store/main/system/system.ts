@@ -1,7 +1,12 @@
 import { Module } from "vuex"
 import { IRootState } from "@/store/type"
 import { ISystemState } from "./types"
-import { getPageListData } from "@/network/main/system/system"
+import {
+  getPageListData,
+  deletePageData,
+  createPageData,
+  editPageData
+} from "@/network/main/system/system"
 
 const systemModule: Module<ISystemState, IRootState> = {
   namespaced: true,
@@ -71,6 +76,57 @@ const systemModule: Module<ISystemState, IRootState> = {
 
       commit(`change${changePageName}List`, list)
       commit(`change${changePageName}Count`, totalCount)
+    },
+
+    async deletePageDataAction({ dispatch }, payload: any) {
+      // 1、获取路径
+      const { pageName, id } = payload
+      const pageUrl = `/${pageName}/${id}`
+
+      // 2、进行网络请求
+      await deletePageData(pageUrl)
+
+      // 3、请求最新的数据
+      dispatch("getPageListAction", {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
+    },
+
+    async createPageDataAction({ dispatch }, payload: any) {
+      //1、创建数据的请求
+      const { pageName, newData } = payload
+      const pageUrl = `/${pageName}`
+      await createPageData(pageUrl, newData)
+
+      dispatch("getPageListAction", {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
+    },
+
+    async editPageDataAction({ dispatch }, payload: any) {
+      //1、编辑数据的请求
+      const { pageName, editData, id } = payload
+      const pageUrl = `/${pageName}/${id}`
+
+      console.log(pageUrl, "获取的数据", editData)
+
+      await editPageData(pageUrl, editData)
+
+      dispatch("getPageListAction", {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
     }
   }
 }
