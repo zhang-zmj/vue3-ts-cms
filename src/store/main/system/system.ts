@@ -100,6 +100,8 @@ const systemModule: Module<ISystemState, IRootState> = {
       //1、创建数据的请求
       const { pageName, newData } = payload
       const pageUrl = `/${pageName}`
+      console.log("我点击获取的数据", newData)
+
       await createPageData(pageUrl, newData)
 
       dispatch("getPageListAction", {
