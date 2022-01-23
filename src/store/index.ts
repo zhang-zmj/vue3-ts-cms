@@ -3,6 +3,7 @@ import login from "./login/login"
 import { IRootState, IStoreType } from "./type"
 import system from "./main/system/system"
 import { getPageListData } from "@/network/main/system/system"
+import dashboard from "./main/analysis/dashboard"
 
 const store = createStore<IRootState>({
   state: () => {
@@ -49,13 +50,13 @@ const store = createStore<IRootState>({
   },
   modules: {
     login,
-    system
+    system,
+    dashboard
   }
 })
 
 export function setupStore() {
   store.dispatch("login/loadLocalLogin")
-  // store.dispatch("getInitialDataAction")
 }
 
 export function useStore(): Store<IStoreType> {

@@ -36,7 +36,8 @@ import {
   ElPagination,
   ElImage,
   ElDialog,
-  ElTree
+  ElTree,
+  ElCard
 } from "element-plus/lib/components"
 
 const components = [
@@ -75,7 +76,8 @@ const components = [
   ElPagination,
   ElImage,
   ElDialog,
-  ElTree
+  ElTree,
+  ElCard
 ]
 
 import {
@@ -92,27 +94,10 @@ import {
 } from "@element-plus/icons-vue"
 import { ElConfigProvider } from "element-plus"
 
-// const Icons = [
-//   Iphone,
-//   Avatar,
-//   Expand,
-//   Fold,
-//   ArrowDown,
-//   Close,
-//   Refresh,
-//   Search,
-//   Edit,
-//   Delete
-// ]
-
 export default function (app: App): void {
   for (const component of components) {
     app.component(component.name, component)
   }
-
-  // for (const icon of Icons) {
-  //   app.component(icon.name, icon)
-  // }
 }
 
 export {
