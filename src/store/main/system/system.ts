@@ -19,7 +19,11 @@ const systemModule: Module<ISystemState, IRootState> = {
       goodsList: [],
       goodsCount: 0,
       menuList: [],
-      menuCount: 0
+      menuCount: 0,
+      departmentCount: 0,
+      departmentList: [],
+      categoryCount: 0,
+      categoryList: []
     }
   },
   mutations: {
@@ -47,11 +51,25 @@ const systemModule: Module<ISystemState, IRootState> = {
 
     changeMenuCount(state, menuCount: number) {
       state.menuCount = menuCount
+    },
+    changeDepartmentCount(state, totalCount: number) {
+      state.departmentCount = totalCount
+    },
+    changeDepartmentList(state, departmentList: any) {
+      state.departmentList = departmentList
+    },
+    changeCategoryCount(state, categoryCount: number) {
+      state.categoryCount = categoryCount
+    },
+    changeCategoryList(state, categoryList: any) {
+      state.categoryList = categoryList
     }
   },
   getters: {
     pageListData(state) {
       return (pageName: string) => {
+        console.log("上下获取的数据", (state as any)[`${pageName}List`])
+
         return (state as any)[`${pageName}List`]
       }
     },
@@ -100,8 +118,6 @@ const systemModule: Module<ISystemState, IRootState> = {
       //1、创建数据的请求
       const { pageName, newData } = payload
       const pageUrl = `/${pageName}`
-      console.log("我点击获取的数据", newData)
-
       await createPageData(pageUrl, newData)
 
       dispatch("getPageListAction", {
@@ -117,8 +133,6 @@ const systemModule: Module<ISystemState, IRootState> = {
       //1、编辑数据的请求
       const { pageName, editData, id } = payload
       const pageUrl = `/${pageName}/${id}`
-
-      console.log(pageUrl, "获取的数据", editData)
 
       await editPageData(pageUrl, editData)
 

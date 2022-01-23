@@ -2,10 +2,12 @@ import { Module } from "vuex"
 import { IDashboardState } from "./types"
 import { IRootState } from "../../type"
 import {
+  getAmountList,
   getCategoryGoodsCount,
   getCategoryGoodsSale,
   getCategoryGoodsFavor,
-  getAddressGoodsSale
+  getAddressGoodsSale,
+  getGoodsSaleTop10
 } from "@/network/main/analysis/dashboard"
 
 const dashboardModule: Module<IDashboardState, IRootState> = {
@@ -15,7 +17,9 @@ const dashboardModule: Module<IDashboardState, IRootState> = {
       categoryGoodsCount: [],
       categoryGoodsFavor: [],
       categoryGoodsSale: [],
-      addressGoodsSale: []
+      addressGoodsSale: [],
+      goodsSaleTop10: [],
+      topPanelDatas: []
     }
   },
   mutations: {
@@ -30,6 +34,12 @@ const dashboardModule: Module<IDashboardState, IRootState> = {
     },
     changeAddressGoodsSale(state, list) {
       state.addressGoodsSale = list
+    },
+    changeTopPanelDatas(state, list) {
+      state.topPanelDatas = list
+    },
+    changeGoodsSaleTop10(state, list) {
+      state.goodsSaleTop10 = list
     }
   },
   actions: {
@@ -42,6 +52,10 @@ const dashboardModule: Module<IDashboardState, IRootState> = {
       commit("changeCategoryGoodsFavor", categoryFavorResult.data)
       const addressGoodsResult = await getAddressGoodsSale()
       commit("changeAddressGoodsSale", addressGoodsResult.data)
+      const resultTopPanelDatas = await getAmountList()
+      commit("changeTopPanelDatas", resultTopPanelDatas.data)
+      const saleTop10 = await getGoodsSaleTop10()
+      commit("changeGoodsSaleTop10", saleTop10.data)
     }
   }
 }

@@ -1,3 +1,8 @@
+interface ISelectOption {
+  label: string
+  value: any
+}
+
 type IFormType = "input" | "password" | "select" | "datepicker"
 
 export interface IFormItem {
@@ -14,6 +19,7 @@ export interface IFormItem {
 }
 
 export interface IForm {
+  title?: string
   formItems?: IFormItem[]
   labelWidth?: string
   colLayout?: any

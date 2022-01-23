@@ -132,7 +132,7 @@ export default defineComponent({
         if (item.slotName === "createAt") return false
         if (item.slotName === "updateAt") return false
         if (item.slotName === "handler") return false
-        return true
+        return TextTrackCue
       }
     )
 
